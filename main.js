@@ -35,6 +35,7 @@ let startGame = () => {
     };
     if (userGuess === "" || userGuess.length < 4 || !checkUserUniqueInput()) {
       console.log("Error Error");
+      continue
     }
     let bullsAndCows = () => {
       let cows = 0;
@@ -56,14 +57,14 @@ let startGame = () => {
     console.log(bullsAndCows());
     if (secretGuess === userGuess) {
       console.log(`Congratulations, you guessed with ${playingNumber} guesses`);
-      let again = rs.question("Do you want to play again? Y/N ");
-      if (again.toLowerCase() === "y") {
+      if( rs.keyInYN('Do you want to play again'))
+         {
         round++
         secretGuess = secretNumber();
         console.log("secretGuess :>> ", secretGuess);
         startGame();
       }
-      if (again.toLowerCase() === "n") {
+      else{
         console.log(`Thanks ${playerName} for playing ${round} times`);
       }
     }
