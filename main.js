@@ -1,5 +1,8 @@
 const rs = require("readline-sync");
-
+let playerName = rs.question("Hello, please enter your name: ");
+if (playerName === '') {
+  playerName = "Stranger"
+}
 let secretNumber = () => {
   let result = [];
   do {
@@ -15,6 +18,7 @@ let secretGuess = secretNumber();
 console.log("secretGuess :>> ", secretGuess);
 
 let userGuess = "";
+let round = 1;
 let playingNumber = 0;
 let startGame = () => {
   do {
@@ -41,10 +45,10 @@ let startGame = () => {
           bulls++;
         } else if (secretGuess.includes(userGuess[i])) {
           cows++;
-        } 
+        }
       }
-      if (cows === 0 && bulls === 0 ) {
-        return `You missed everything`
+      if (cows === 0 && bulls === 0) {
+        return `You missed everything`;
       }
       return `cows: ${cows}, bulls ${bulls}`;
     };
@@ -54,11 +58,13 @@ let startGame = () => {
       console.log(`Congratulations, you guessed with ${playingNumber} guesses`);
       let again = rs.question("Do you want to play again? Y/N ");
       if (again.toLowerCase() === "y") {
+        round++
         secretGuess = secretNumber();
+        console.log("secretGuess :>> ", secretGuess);
         startGame();
       }
       if (again.toLowerCase() === "n") {
-        console.log(`Thanks for playing`);
+        console.log(`Thanks ${playerName} for playing ${round} times`);
       }
     }
   } while (secretGuess !== userGuess);
