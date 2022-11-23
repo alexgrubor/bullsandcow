@@ -1,4 +1,5 @@
 const rs = require("readline-sync");
+const emoji = require('node-emoji')
 let playerName = rs.question("Hello, please enter your name: ");
 if (playerName === '') {
   playerName = "Stranger"
@@ -34,7 +35,7 @@ let startGame = () => {
       return true;
     };
     if (userGuess === "" || userGuess.length < 4 || !checkUserUniqueInput()) {
-      console.log("Error Error");
+      console.log("Error Error, please enter 4 unique digits");
       continue
     }
     let bullsAndCows = () => {
@@ -51,7 +52,7 @@ let startGame = () => {
       if (cows === 0 && bulls === 0) {
         return `You missed everything`;
       }
-      return `cows: ${cows}, bulls ${bulls}`;
+      return `${emoji.get('cow')}:  ${cows}, ${emoji.get(':cow2')} ${bulls}`;
     };
 
     console.log(bullsAndCows());
