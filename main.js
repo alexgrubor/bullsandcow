@@ -66,7 +66,7 @@ let startGame = () => {
         startGame();
       }
       else{
-        console.log(`Thanks ${playerName} for playing ${round} times`);
+        console.log(`Thanks ${playerName} for playing ${round}  times`);
       }
     }
   } while (secretGuess !== userGuess);
